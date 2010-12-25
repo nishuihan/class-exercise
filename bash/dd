@@ -1,0 +1,7 @@
+#!/bin/bash
+x=/home/zhenshan/Hello-World.c.c/
+cd $x
+for h in `ls` 
+do
+  mv $h $h.c;
+done;

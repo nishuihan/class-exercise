@@ -1,0 +1,8 @@
+#!/bin/bash
+cd Hello_World/
+filelist=`ls`
+echo $filelist
+for h in $filelist
+do
+  mv $h $h.c;
+done;

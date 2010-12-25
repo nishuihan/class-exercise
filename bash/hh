@@ -1,0 +1,6 @@
+#!/bin/bash
+for i in `ls`
+do
+f=`echo $i|awk -F'.' '{print $1}' `
+mv $i $f
+done
