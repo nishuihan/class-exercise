@@ -1,0 +1,6 @@
+1 zhang1 66 99
+2 zhang2 77 88
+3 zhang3 66 77
+4 zhaqg4 76 99
+5 zhang5 88 60
+6 zhang6 66 77

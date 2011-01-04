@@ -8,13 +8,12 @@ typedef struct stu{
     int math;
     struct stu *next;
 }stu_t;
-void creat_file(int n, char *str)
+void creat_file(int n)
 {
-    stu_t stu[n];
     int i;
     char buff[100];
     FILE *fp;
-    if ((fp = fopen(str, "w+")) == NULL)
+    if ((fp = fopen("111", "w")) == NULL)
         printf("you connot open the file\n");
     for (i = 0; i < n; i++) 
     {
@@ -25,22 +24,31 @@ void creat_file(int n, char *str)
     //fclose(fp);
 }
 
-stu_t * creat_link(stu_t *pro, char *str, int n)
+stu_t * creat_link(stu_t *pro, int n)
 {
     FILE *fp;
-    stu_t *p; 
+    stu_t *p, *tmp; 
     int i = 0;
-    char buff[100];
-    if ((fp = fopen(str, "w+")) == NULL)
+    char buff[100], tmp_name[100];
+    if ((fp = fopen("111", "r")) == NULL)
         printf("please open the correct file\n");
     while(fgets(buff, 100, fp) && i < n)
     {
         p = (stu_t *)malloc(sizeof(stu_t));
         p->id = atoi(strtok(buff, " "));
-        p->name = strtok(NULL, " ");
+        tmp_name = strtok(NULL, " ");
+        strcpy(p->name, tmp_name); 
         p->chinese = atoi(strtok(NULL, " " ));
         p->math = atoi(strtok(NULL, " "));
-        pro = p->next = pro;
+        if (i == 0)
+        {
+             p->next = pro;
+            tmp = p;
+             i++;
+             continue;
+        }
+        p->next = tmp;
+        tmp = p;
         i++;
     }
     fclose(fp);
@@ -95,12 +103,12 @@ int main(int argc, const char *argv[])
     //creat_file(2, str);
     //p = creat_link(NULL, str, 2);
     //char str[10] = "111";
-    creat_file(2, argv[1]);
-    p = creat_link(NULL, argv[1], 2);
+    creat_file(4);
+    p = creat_link(NULL, 4);
     head_new = sort(p);
-    for (i = 0; i < 2; i++)
+    for (i = 0; i < 4; i++)
     {
-        printf("%d\n", head_new->id);
+        printf("%d %s %d %d\n", head_new->id, head_new->name, head_new->math, head_new->chinese);
         head_new = head_new->next;
     }
     return 0;
