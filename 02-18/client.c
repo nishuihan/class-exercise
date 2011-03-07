@@ -52,11 +52,11 @@ int main(int argc, const char *argv[])
             n = send(client_socket, buffer, len, 0);
         }
 
-        //if(buffer[0] == '.')
-        //break;
-        //
-        //if((len = recv(client_socket, buffer, len, 0)) > 0)
-        //n = write(STDOUT_FILENO, buffer, len);
+        if(buffer[0] == '.')
+            break;
+
+        if((len = recv(client_socket, buffer, len, 0)) > 0)
+            n = write(STDOUT_FILENO, buffer, len);
     }
     
     close(client_socket);
